@@ -28,6 +28,7 @@ type Album = {
 
 const ListaDeTarefas = () => {
   const [tarefas, setTarefas] = useState([]);
+
   const escutarCliqueAcessarAPI = () => {
     axios.get("https://jsonplaceholder.typicode.com/todos").then((resposta: AxiosResponse) => {
       const dados = resposta.data.map((item: { id: number; title: string; completed: boolean; }) => {
@@ -40,19 +41,6 @@ const ListaDeTarefas = () => {
       setTarefas(dados);
     });
   };
-
-  // useEffect(() => {
-  //   axios.get("https://jsonplaceholder.typicode.com/todos").then((resposta) => {
-  //     const dados = resposta.data.map((item: any) => {
-  //       return {
-  //         id: item.id,
-  //         titulo: item.title,
-  //         concluido: item.completed
-  //       };
-  //     });
-  //     setTarefas(dados);
-  //   });
-  // });
   
   return (
     <>
@@ -133,15 +121,15 @@ const ListaDeAlbuns = () => {
       </div>
       <ul>
         {
-          albuns.map((item: Publicacao) => {
-            return <ItemAlbun key={item.id} titulo={item.titulo}  />
+          albuns.map((item: Album) => {
+            return <ItemAlbum key={item.id} titulo={item.titulo}  />
           })
         }
       </ul>
     </>
   );
 }
-const ItemAlbun = (props: {titulo: string}) => {
+const ItemAlbum = (props: {titulo: string}) => {
   return (<li>| Titulo album: {props.titulo} |</li>);
 }
 
